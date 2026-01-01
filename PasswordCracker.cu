@@ -25,14 +25,14 @@ __device__ void encrypt_password(const char *plain, char *encrypted)
     for (int i = 0; i < 10; i++) {
         if (i < 6) {  // letters
             if (encrypted[i] > 'z')
-                encrypted[i] = 'a' + (encrypted[i] - 'z' - 1);
+                encrypted[i] = (encrypted[i] - 'z') + 'a';
             else if (encrypted[i] < 'a')
-                encrypted[i] = 'z' - ('a' - encrypted[i] - 1);
+                encrypted[i] = ('a' - encrypted[i]) + 'a';
         } else {      // digits
             if (encrypted[i] > '9')
-                encrypted[i] = '0' + (encrypted[i] - '9' - 1);
+                encrypted[i] = (encrypted[i] - '9') + '0';
             else if (encrypted[i] < '0')
-                encrypted[i] = '9' - ('0' - encrypted[i] - 1);
+                encrypted[i] = ('0' - encrypted[i]) + '0';
         }
     }
 }
