@@ -94,7 +94,7 @@ int load_encrypted(const char *filename, char **data, int *count)
         return 1;
     }
 
-    *data = malloc(MAX_PASSWORDS * ENCRYPTED_LEN);
+    *data = (char *)malloc(MAX_PASSWORDS * ENCRYPTED_LEN);
     if (!*data) {
         fclose(fp);
         return 1;
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
 
     cudaDeviceSynchronize();
 
-    char *host_results = malloc(num_passwords * PLAIN_LEN);
+    char *host_results = (char *)malloc(num_passwords * PLAIN_LEN);
     cudaMemcpy(host_results, d_results, num_passwords * PLAIN_LEN, cudaMemcpyDeviceToHost);
 
     write_results(host_results, num_passwords);
